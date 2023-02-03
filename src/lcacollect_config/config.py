@@ -33,6 +33,8 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
     POSTGRES_PORT: str
     POSTGRES_SSL: bool = False
+    POSTGRES_MAX_OVERFLOW = 30
+    POSTGRES_POOL_SIZE: int = 20
     SQLALCHEMY_DATABASE_URI: PostgresDsn | None = None
 
     ROUTER_URL: AnyHttpUrl

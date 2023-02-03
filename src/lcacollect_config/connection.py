@@ -20,6 +20,8 @@ def create_postgres_engine(as_async=True):
             settings.SQLALCHEMY_DATABASE_URI,
             pool_pre_ping=True,
             future=True,
+            pool_size=settings.POSTGRES_POOL_SIZE,
+            max_overflow=settings.POSTGRES_MAX_OVERFLOW,
             connect_args={"ssl": settings.POSTGRES_SSL},
         )
     else:
