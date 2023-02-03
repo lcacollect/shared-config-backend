@@ -69,4 +69,4 @@ stages:
           displayName: Build and Publish
           workingDirectory: $(workingDirectory)
           env:
-            POETRY_PYPI_TOKEN_PYPI=$(pypi-token)
+            POETRY_PYPI_TOKEN_PYPI: $(pypi-token)
