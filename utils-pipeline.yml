@@ -62,7 +62,7 @@ stages:
         - task: UsePythonVersion@0
           inputs:
             versionSpec: "3.10"
-        - script: python -m pip install poetry && poetry install
+        - script: python -m pip install poetry && poetry install --all-extras
           workingDirectory: $(workingDirectory)
           displayName: Install
         - script: poetry publish --build
