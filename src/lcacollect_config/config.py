@@ -3,7 +3,7 @@ from typing import Any
 from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, validator
 
 
-class Settings(BaseSettings):
+class ServerSettings(BaseSettings):
     API_STR: str = "/api"
     SERVER_NAME: str
     SERVER_HOST: AnyHttpUrl
@@ -20,13 +20,21 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    # Azure AD
-    AAD_OPENAPI_CLIENT_ID: str
+    class Config:
+        case_sensitive = True
+
+
+class AzureSettings(BaseSettings):
     AAD_APP_CLIENT_ID: str
     AAD_TENANT_ID: str
+    AAD_OPENAPI_CLIENT_ID: str | None
     AAD_TEST_CLIENT_SECRET: str | None
 
-    # Postgres
+    class Config:
+        case_sensitive = True
+
+
+class PostgresSettings(BaseSettings):
     POSTGRES_HOST: str
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
@@ -36,8 +44,6 @@ class Settings(BaseSettings):
     POSTGRES_MAX_OVERFLOW = 30
     POSTGRES_POOL_SIZE: int = 20
     SQLALCHEMY_DATABASE_URI: PostgresDsn | None = None
-
-    ROUTER_URL: AnyHttpUrl
 
     @validator("SQLALCHEMY_DATABASE_URI", pre=True)
     def assemble_db_connection(cls, v: str | None, values: dict[str, Any]) -> Any:
@@ -54,3 +60,7 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
+
+
+class Settings(ServerSettings, AzureSettings, PostgresSettings):
+    ROUTER_URL: AnyHttpUrl
