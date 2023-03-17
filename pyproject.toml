@@ -10,12 +10,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 pydantic = "*"
-fastapi-azure-auth = "*"
-SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"]}
-sqlmodel = ">=0.0.8"
-asyncpg = "^0.26.0"
 strawberry-graphql = {extras = ["fastapi"], version = ">=0.164.0"}
+fastapi-azure-auth = "*"
 aiocache = "*"
+SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"], optional = true}
+sqlmodel = {version = ">=0.0.8", optional = true }
+asyncpg = {version = "^0.26.0", optional = true }
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
@@ -31,6 +31,9 @@ pytest-cov = "^4.0.0"
 
 [tool.poetry.group.pipeline.dependencies]
 pytest-azurepipelines = "^1.0.4"
+
+[tool.poetry.extras]
+database = ["SQLAlchemy", "sqlmodel", "asyncpg"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
