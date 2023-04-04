@@ -1,8 +1,8 @@
 from enum import Enum
-from typing import Optional
+from typing import Any, Dict, Optional
 
 import strawberry
-from sqlalchemy import desc
+from sqlalchemy import desc, text
 from sqlmodel import col, or_, select
 from sqlmodel.main import SQLModelMetaclass
 from sqlmodel.sql.expression import SelectOfScalar
@@ -17,6 +17,7 @@ class FilterOptions:
     is_empty: Optional[bool] = None
     is_not_empty: Optional[bool] = None
     is_any_of: Optional[list[str]] = None
+    json_contains: Optional[Dict[str, Any]]= None
 
 
 class BaseFilter:  # pragma: no cover
@@ -49,7 +50,10 @@ def filter_model_query(model: SQLModelMetaclass, filters: BaseFilter, query: Opt
             query = query.where(or_(field != "", field != None))
         elif _filter.is_any_of:
             query = query.where(col(field).in_(_filter.is_any_of))
-
+        elif _filter.json_contains and str(field.type) == "JSON":
+            for key, value in _filter.json_contains.items():
+                query = query.where(col(field)[key].contains(value))
+                
     return query
 
 

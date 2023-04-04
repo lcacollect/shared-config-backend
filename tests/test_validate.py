@@ -13,7 +13,6 @@ except (ImportError, ModuleNotFoundError):
 
 @pytest.mark.asyncio
 async def test_project_exists(httpx_mock: HTTPXMock):
-
     mock_data = {
         "data": {
             "projects": [
@@ -31,7 +30,6 @@ async def test_project_exists(httpx_mock: HTTPXMock):
 
 
 async def test_project_doesnt_exist(httpx_mock: HTTPXMock):
-
     mock_data = {"errors": {"errors": "error"}}
 
     httpx_mock.add_response(url=f"{settings.ROUTER_URL}/graphql", json=mock_data)
@@ -41,7 +39,6 @@ async def test_project_doesnt_exist(httpx_mock: HTTPXMock):
 
 
 async def test_group_exists(httpx_mock: HTTPXMock):
-
     mock_data = {
         "data": {
             "projectGroups": [
@@ -58,7 +55,6 @@ async def test_group_exists(httpx_mock: HTTPXMock):
 
 
 async def test_group_doesnt_exist(httpx_mock: HTTPXMock):
-
     mock_data = {"errors": {"error": "error"}}
 
     httpx_mock.add_response(url=f"{settings.ROUTER_URL}/graphql", json=mock_data)
