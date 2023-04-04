@@ -17,7 +17,7 @@ class FilterOptions:
     is_empty: Optional[bool] = None
     is_not_empty: Optional[bool] = None
     is_any_of: Optional[list[str]] = None
-    json_contains: Optional[Dict[str, Any]]= None
+    json_contains: Optional[Dict[str, Any]] = None
 
 
 class BaseFilter:  # pragma: no cover
@@ -53,7 +53,7 @@ def filter_model_query(model: SQLModelMetaclass, filters: BaseFilter, query: Opt
         elif _filter.json_contains and str(field.type) == "JSON":
             for key, value in _filter.json_contains.items():
                 query = query.where(col(field)[key].contains(value))
-                
+
     return query
 
 
