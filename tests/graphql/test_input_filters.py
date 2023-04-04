@@ -1,8 +1,8 @@
+import json
 from typing import Optional
 
 import pytest
 from pydantic import BaseModel
-from sqlalchemy import Integer, String, cast, select, text
 from sqlmodel import Session
 
 from lcacollect_config.graphql.input_filters import (BaseFilter, FilterOptions,
@@ -21,7 +21,7 @@ from lcacollect_config.graphql.input_filters import (BaseFilter, FilterOptions,
         (FilterOptions(is_empty=True), 0),
         (FilterOptions(is_not_empty=True), 3),
         (FilterOptions(is_any_of=["70e94ba8-128c-4890-8291-b4982c0fb5f2", "5d02171c-483d-4c27-9cbb-20e9b7c6f802"]), 2),
-        (FilterOptions(json_contains={"domains": "design"}), 2),
+        (FilterOptions(json_contains=json.dumps({"domains": "design"})), 2),
     ],
     ids=["equal", "contains", "starts_with", "ends_with", "is_empty", "is_not_empty", "is_any_of", "json_contains"],
 )
@@ -35,7 +35,7 @@ def test_filter_model_query(entry_data, entry_model, entries, db_engine, filter_
         filters = ModelFilter(meta_fields=filter_options)
     else:
         filters = ModelFilter(id=filter_options)
-        
+
     with Session(db_engine) as session:
         query = filter_model_query(entry_model, filters)
         data = session.exec(query).all()
