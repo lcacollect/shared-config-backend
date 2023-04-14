@@ -14,7 +14,6 @@ except (ImportError, ModuleNotFoundError):
 
 @cached(ttl=60)
 async def project_exists(project_id: str, token: str) -> Union[bool, list[dict]]:
-
     """
     Checks whether the project exists. The function is cached with a decorator.
     Args:
@@ -52,7 +51,6 @@ async def project_exists(project_id: str, token: str) -> Union[bool, list[dict]]
 
 
 def is_super_admin(user: User) -> bool:
-
     """Checks whether the user is an Admin and so can access all resources."""
 
     return "lca_super_admin" in user.roles
@@ -60,7 +58,6 @@ def is_super_admin(user: User) -> bool:
 
 @cached(ttl=60)
 async def group_exists(project_id: str, group_id: str, token: str) -> bool:
-
     """
     Checks whether the group exists. The function is cached with a decorator.
     Args:

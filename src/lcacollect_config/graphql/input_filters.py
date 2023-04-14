@@ -54,9 +54,11 @@ def filter_model_query(model: SQLModelMetaclass, filters: BaseFilter, query: Opt
         elif _filter.json_contains and str(field.type) == "JSON":
             try:
                 obj_filter = json.loads(_filter.json_contains)
+                for key, value in obj_filter.items():
+                    query = query.where(col(field)[key].astext.contains(value))
             except json.decoder.JSONDecodeError:
                 continue
-            for key, value in obj_filter.items():
+            except AttributeError:
                 query = query.where(col(field)[key].contains(value))
 
     return query
