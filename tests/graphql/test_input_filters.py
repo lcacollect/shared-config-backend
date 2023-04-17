@@ -5,10 +5,13 @@ import pytest
 from pydantic import BaseModel
 from sqlmodel import Session
 
-from lcacollect_config.graphql.input_filters import (BaseFilter, FilterOptions,
-                                                     SortOptions,
-                                                     filter_model_query,
-                                                     sort_model_query)
+from lcacollect_config.graphql.input_filters import (
+    BaseFilter,
+    FilterOptions,
+    SortOptions,
+    filter_model_query,
+    sort_model_query,
+)
 
 
 @pytest.mark.parametrize(
@@ -22,8 +25,19 @@ from lcacollect_config.graphql.input_filters import (BaseFilter, FilterOptions,
         (FilterOptions(is_not_empty=True), 3),
         (FilterOptions(is_any_of=["70e94ba8-128c-4890-8291-b4982c0fb5f2", "5d02171c-483d-4c27-9cbb-20e9b7c6f802"]), 2),
         (FilterOptions(json_contains=json.dumps({"domains": "design"})), 2),
+        (FilterOptions(json_contains="domains"), 3),
     ],
-    ids=["equal", "contains", "starts_with", "ends_with", "is_empty", "is_not_empty", "is_any_of", "json_contains"],
+    ids=[
+        "equal",
+        "contains",
+        "starts_with",
+        "ends_with",
+        "is_empty",
+        "is_not_empty",
+        "is_any_of",
+        "json_contains",
+        "json_contains_error",
+    ],
 )
 def test_filter_model_query(entry_data, entry_model, entries, db_engine, filter_options, expected):
     class ModelFilter(BaseModel, BaseFilter):
