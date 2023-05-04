@@ -41,7 +41,12 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target-version = ['py310']
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
 
 [tool.pytest.ini_options]
 addopts = "--cov=src --cov-report=term-missing --cov-branch --cov-report=xml"
