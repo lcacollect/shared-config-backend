@@ -5,10 +5,13 @@ import pytest
 from pydantic import BaseModel
 from sqlmodel import Session
 
-from lcacollect_config.graphql.input_filters import (BaseFilter, FilterOptions,
-                                                     SortOptions,
-                                                     filter_model_query,
-                                                     sort_model_query)
+from lcacollect_config.graphql.input_filters import (
+    BaseFilter,
+    FilterOptions,
+    SortOptions,
+    filter_model_query,
+    sort_model_query,
+)
 
 
 @pytest.mark.parametrize(
