@@ -12,3 +12,7 @@ class MicroServiceConnectionError(ConnectionError):
 
 class MicroServiceResponseError(Exception):
     pass
+
+
+class MSGraphException(Exception):
+    pass

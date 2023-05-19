@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lcacollect-config"
-version = "1.4.0"
+version = "1.5.0"
 description = "This package contains shared config and utils to be used across LCAcollect backends."
 authors = ["Christian Kongsgaard <chrk@arkitema.com>"]
 repository = "https://github.com/lcacollect/shared-config-backend"
@@ -75,6 +75,11 @@ env = [
     "STORAGE_ACCESS_KEY=PLACEHOLDER",
     "STORAGE_BASE_PATH=test",
     "SPECKLE_TOKEN=PALCEHOLDER",
+    "AAD_GRAPH_SECRET=PLACEHOLDER",
+    "DEFAULT_AD_FQDN=PLACEHOLDER",
+    "SENDGRID_SECRET=c2VjcmV0",
+    "EMAIL_NOTIFICATION_FROM=no-reply@arkitema.com",  # no-reply@molio.com
+    "INTERNAL_EMAIL_DOMAINS_LIST=arkitema,cowi,cowicloud",
 ]
 
 [tool.coverage.run]

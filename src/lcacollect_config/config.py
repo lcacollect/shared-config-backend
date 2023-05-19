@@ -3,6 +3,14 @@ from typing import Any
 from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, validator
 
 
+def convert_env_to_list(cls, v: str | list[str]) -> list[str] | str:
+    if isinstance(v, str) and not v.startswith("["):
+        return [i.strip() for i in v.split(",")]
+    elif isinstance(v, list):
+        return v
+    raise ValueError(v)
+
+
 class ServerSettings(BaseSettings):
     API_STR: str = "/api"
     SERVER_NAME: str
@@ -12,13 +20,8 @@ class ServerSettings(BaseSettings):
         "http://0.0.0.0:3000",
     ]
 
-    @validator("BACKEND_CORS_ORIGINS", pre=True)
-    def assemble_cors_origins(cls, v: str | list[str]) -> list[str] | str:
-        if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
-        elif isinstance(v, (list, str)):
-            return v
-        raise ValueError(v)
+    # validators
+    _convert_to_list = validator("BACKEND_CORS_ORIGINS", allow_reuse=True)(convert_env_to_list)
 
     class Config:
         case_sensitive = True
@@ -62,5 +65,22 @@ class PostgresSettings(BaseSettings):
         case_sensitive = True
 
 
-class Settings(ServerSettings, AzureSettings, PostgresSettings):
+class EmailSettings(BaseSettings):
+    SENDGRID_SECRET: str
+    EMAIL_NOTIFICATION_FROM: str
+    INTERNAL_EMAIL_DOMAINS_LIST: str | None = None
+    DEFAULT_AD_FQDN: str
+
+    # validators
+    _convert_to_list = validator("INTERNAL_EMAIL_DOMAINS_LIST", allow_reuse=True)(convert_env_to_list)
+
+    class Config:
+        case_sensitive = True
+
+
+class Settings(ServerSettings, AzureSettings, PostgresSettings, EmailSettings):
     ROUTER_URL: AnyHttpUrl
+    AAD_GRAPH_SECRET: str
+
+    class Config:
+        case_sensitive = True
