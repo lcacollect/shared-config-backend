@@ -633,6 +633,18 @@ Faker = ">=5.4.0,<12.1"
 tests = ["Django (>=3.0)", "Flask (>=1.0)", "Marshmallow (>=3.9)", "SQLAlchemy (>=1.1.4)", "flask-sqlalchemy (>=2.1)", "mongoengine (>=0.10.1)", "peewee (>=3.7.0)", "pony (>=0.7)", "psycopg2-binary (>=2.8.4)", "pytest"]
 
 [[package]]
+name = "msgraph-core"
+version = "0.2.2"
+description = "Core component of the Microsoft Graph Python SDK consisting of HTTP/Graph Client and a configurable middleware pipeline (Preview)."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "msgraph-core-0.2.2.tar.gz", hash = "sha256:147324246788abe8ed7e05534cd9e4e0ec98b33b30e011693b8d014cebf97f63"},
+    {file = "msgraph_core-0.2.2-py3-none-any.whl", hash = "sha256:e297564b9a0ca228493d8851f95cb2de9522143d82efa40ce3a6ad286e21392e"},
+]
+
+[[package]]
 name = "mypy-extensions"
 version = "1.0.0"
 description = "Type system extensions for programs checked with the mypy type checker."
@@ -1014,6 +1026,18 @@ files = [
 six = ">=1.5"
 
 [[package]]
+name = "python-http-client"
+version = "3.3.7"
+description = "HTTP REST client, simplified for Python"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "python_http_client-3.3.7-py3-none-any.whl", hash = "sha256:ad371d2bbedc6ea15c26179c6222a78bc9308d272435ddf1d5c84f068f249a36"},
+    {file = "python_http_client-3.3.7.tar.gz", hash = "sha256:bf841ee45262747e00dec7ee9971dfb8c7d83083f5713596488d67739170cea0"},
+]
+
+[[package]]
 name = "python-jose"
 version = "3.3.0"
 description = "JOSE implementation in Python"
@@ -1065,6 +1089,22 @@ files = [
 
 [package.dependencies]
 pyasn1 = ">=0.1.3"
+
+[[package]]
+name = "sendgrid"
+version = "6.10.0"
+description = "Twilio SendGrid library for Python"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+files = [
+    {file = "sendgrid-6.10.0-py3-none-any.whl", hash = "sha256:522b30fc98306496208c5d8bdd5642cd6a2fd65cad487475f57f9098ce880604"},
+    {file = "sendgrid-6.10.0.tar.gz", hash = "sha256:9b15050c6f8826ee576f76a786efb15d956639f485478cbddd79ed69e8350ab8"},
+]
+
+[package.dependencies]
+python-http-client = ">=3.2.1"
+starkbank-ecdsa = ">=2.0.1"
 
 [[package]]
 name = "six"
@@ -1198,6 +1238,17 @@ SQLAlchemy = ">=1.4.17,<=1.4.41"
 sqlalchemy2-stubs = "*"
 
 [[package]]
+name = "starkbank-ecdsa"
+version = "2.2.0"
+description = "A lightweight and fast pure python ECDSA library"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "starkbank-ecdsa-2.2.0.tar.gz", hash = "sha256:9399c3371b899d4a235b68a1ed7919d202fbf024bd2c863ae8ebdad343c2a63a"},
+]
+
+[[package]]
 name = "starlette"
 version = "0.27.0"
 description = "The little ASGI library that shines."
@@ -1269,4 +1320,4 @@ database = ["SQLAlchemy", "asyncpg", "sqlmodel"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "82d7d1727080e624647d4a718b7d6bb35ce176fcbeb72f4b6f521c71c9142565"
+content-hash = "d84dc7f632b82c1779abc4e2eb1f1ac9f5b48ee2425d224ee649e7c96bef2790"

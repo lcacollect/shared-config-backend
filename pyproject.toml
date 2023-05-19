@@ -16,6 +16,8 @@ aiocache = "*"
 SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"], optional = true}
 sqlmodel = {version = ">=0.0.8", optional = true }
 asyncpg = {version = "^0.26.0", optional = true }
+msgraph-core = "*"
+sendgrid = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
