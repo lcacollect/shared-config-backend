@@ -18,6 +18,7 @@ sqlmodel = {version = ">=0.0.8", optional = true }
 asyncpg = {version = "^0.26.0", optional = true }
 msgraph-core = "*"
 sendgrid = "*"
+requests = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0"
