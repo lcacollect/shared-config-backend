@@ -19,7 +19,7 @@ def settings_env():
         "AAD_OPENAPI_CLIENT_ID": "b7fc0d3e-fdd9-4260-8b01-12cad623c64a",
         "AAD_APP_CLIENT_ID": "40c35f10-9d17-43dc-bf6c-6208945c98c6",
         "AAD_TENANT_ID": "11be1538-79d8-4939-82b8-b767805d825b",
-        "AAD_TEST_CLIENT_SECRET": "RmQ7Q~ejj0xaB566qjekYB6Oivq06Sk4Q69Hw",
+        "AAD_GRAPH_SECRET": "RmQ7Q~ejj0xaB566qjekYB6Oivq06Sk4Q69Hw",
         "DEFAULT_AD_FQDN": "cowi.onmicrosoft.com",
         "SENDGRID_SECRET": "c2VjcmV0",
         "EMAIL_NOTIFICATION_FROM": "no-reply@arkitema.com",

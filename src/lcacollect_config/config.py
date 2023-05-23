@@ -1,5 +1,6 @@
 from typing import Any
 
+from azure.identity import ClientSecretCredential
 from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, validator
 
 
@@ -81,6 +82,18 @@ class EmailSettings(BaseSettings):
 class Settings(ServerSettings, AzureSettings, PostgresSettings, EmailSettings):
     ROUTER_URL: AnyHttpUrl
     AAD_GRAPH_SECRET: str
+
+    @validator("AAD_GRAPH_SECRET")
+    def assemble_graph_credential(
+        cls, v: str | None | ClientSecretCredential, values: dict[str, Any]
+    ) -> ClientSecretCredential:
+        if isinstance(v, ClientSecretCredential):
+            return v
+        return ClientSecretCredential(
+            tenant_id=values.get("AAD_TENANT_ID"),
+            client_id=values.get("AAD_APP_CLIENT_ID"),
+            client_secret=v,
+        )
 
     class Config:
         case_sensitive = True

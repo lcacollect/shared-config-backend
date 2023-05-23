@@ -15,7 +15,7 @@ async def test_get_aad_user_by_email(mock_graph_client):
     assert len(mock_graph_client.mock_calls) == 3
     # GraphClient(...)
     assert mock_graph_client.call_count == 1
-    assert mock_graph_client.mock_calls[0][2] == {"credential": "PLACEHOLDER"}
+    assert mock_graph_client.mock_calls[0][2] == {"credential": user.settings.AAD_GRAPH_SECRET}
     # graph.get(...)
     assert len(mock_graph_client.mock_calls[1][2]) == 2
     assert mock_graph_client.mock_calls[1][2]["headers"] == {"Content-Type": "application/json"}
@@ -47,7 +47,7 @@ async def test_invite_user_to_add(mock_graph_client):
     assert len(mock_graph_client.mock_calls) == 2
     # GraphClient(...)
     assert mock_graph_client.call_count == 1
-    assert mock_graph_client.mock_calls[0][2] == {"credential": "PLACEHOLDER"}
+    assert mock_graph_client.mock_calls[0][2] == {"credential": user.settings.AAD_GRAPH_SECRET}
     # graph.post(....)
     assert len(mock_graph_client.mock_calls[1][2]) == 3
     assert mock_graph_client.mock_calls[1][2]["url"] == "/invitations"
@@ -68,7 +68,7 @@ async def test_get_users_from_azure(mock_graph_client):
     assert len(mock_graph_client.mock_calls) == 3
     # GraphClient(...)
     assert mock_graph_client.call_count == 1
-    assert mock_graph_client.mock_calls[0][2] == {"credential": "PLACEHOLDER"}
+    assert mock_graph_client.mock_calls[0][2] == {"credential": user.settings.AAD_GRAPH_SECRET}
     # graph.post(....)
     assert len(mock_graph_client.mock_calls[1][2]) == 3
     assert mock_graph_client.mock_calls[1][2]["url"] == "https://graph.microsoft.com/beta/$batch"
