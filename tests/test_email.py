@@ -71,7 +71,9 @@ async def test_send_email_custom_body(mocker):
 # working example for sending email
 # @pytest.mark.asyncio
 # async def test_send_email():
-#     email.settings.EMAIL_NOTIFICATION_FROM = "provide existing domain"
+#     email.settings.EMAIL_NOTIFICATION_FROM = "no-reply@arkitema.com"
 #     email.settings.SENDGRID_SECRET = ""
-#     response = await email.send_email("egls@cowi.com", email.EmailType.INVITE_TO_LCA, **{"project_name": "test_project", "url": "lca.com"})
+#     response = await email.send_email(
+#         "chrk@arkitema.com", email.EmailType.INVITE_TO_LCA, **{"project_name": "test_project", "url": "lca.com"}
+#     )
 #     assert response.status_code == 202

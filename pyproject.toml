@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lcacollect-config"
-version = "1.6.1"
+version = "1.6.2"
 description = "This package contains shared config and utils to be used across LCAcollect backends."
 authors = ["Christian Kongsgaard <chrk@arkitema.com>"]
 repository = "https://github.com/lcacollect/shared-config-backend"
@@ -33,9 +33,6 @@ isort = "^5.10.1"
 pytest-mock = "^3.10.0"
 pytest-cov = "^4.0.0"
 
-[tool.poetry.group.pipeline.dependencies]
-pytest-azurepipelines = "^1.0.4"
-
 [tool.poetry.extras]
 database = ["SQLAlchemy", "sqlmodel", "asyncpg"]
 
@@ -53,11 +50,11 @@ src_paths = ["src", "tests"]
 
 
 [tool.pytest.ini_options]
-addopts = "--cov=src --cov-report=term-missing --cov-branch --cov-report=xml"
+#addopts = "--cov=src --cov-report=term-missing --cov-branch --cov-report=xml"
 asyncio_mode = "auto"
 console_output_style = "count"
 pythonpath = "src"
-required_plugins = ["pytest-cov>=4.0.0", "pytest-azurepipelines"]
+required_plugins = ["pytest-cov>=4.0.0"]
 testpaths = ["tests/"]
 
 env = [

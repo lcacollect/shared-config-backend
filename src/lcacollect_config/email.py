@@ -1,3 +1,4 @@
+import logging
 from enum import Enum
 
 from requests import Response
@@ -10,6 +11,9 @@ except (ImportError, ModuleNotFoundError):
     from lcacollect_config import config
 
     settings = config.Settings()
+
+
+logger = logging.getLogger(__name__)
 
 
 class EmailType(Enum):
@@ -90,6 +94,7 @@ async def send_email(
 
         response = sg.send(message)
     except Exception as e:
+        logger.error(e)
         response = e.body
 
     return response
