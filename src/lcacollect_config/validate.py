@@ -30,6 +30,7 @@ async def project_exists(project_id: str, token: str) -> Union[bool, list[dict]]
         query($id: String!) {
             projects(filters: {id: {equal: $id}}) {
                 id
+                public
             }
         }
     """
