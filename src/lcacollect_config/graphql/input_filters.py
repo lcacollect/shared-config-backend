@@ -18,7 +18,7 @@ class FilterOptions:
     is_empty: Optional[bool] = None
     is_not_empty: Optional[bool] = None
     is_any_of: Optional[list[str]] = None
-    is_: Optional[bool] = strawberry.field(name="is", default=None)
+    is_: bool = strawberry.field(default=None, name="is")
     json_contains: Optional[str] = None
 
 
@@ -40,7 +40,7 @@ def filter_model_query(model: SQLModelMetaclass, filters: BaseFilter, query: Opt
 
         if _filter.equal:
             query = query.where(field == _filter.equal)
-        elif _filter.is_:
+        elif _filter.is_ is not None:
             query = query.where(field == _filter.is_)
         elif _filter.contains:
             query = query.where(col(field).contains(_filter.contains))

@@ -10,7 +10,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 pydantic = "*"
-strawberry-graphql = {extras = ["fastapi"], version = ">=0.164.0"}
+strawberry-graphql = {extras = ["fastapi"], version = ">=0.209.0"}
 fastapi-azure-auth = ">=4.0.0"
 aiocache = "*"
 SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"], optional = true}
