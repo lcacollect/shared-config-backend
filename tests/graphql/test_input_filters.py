@@ -26,7 +26,7 @@ from lcacollect_config.graphql.input_filters import (
         (FilterOptions(is_any_of=["70e94ba8-128c-4890-8291-b4982c0fb5f2", "5d02171c-483d-4c27-9cbb-20e9b7c6f802"]), 2),
         (FilterOptions(json_contains=json.dumps({"domains": "design"})), 2),
         (FilterOptions(json_contains="domains"), 3),
-        (FilterOptions(is_=True), 0),
+        (FilterOptions(is_true=True), 0),
     ],
     ids=[
         "equal",
@@ -38,7 +38,7 @@ from lcacollect_config.graphql.input_filters import (
         "is_any_of",
         "json_contains",
         "json_contains_error",
-        "is_",
+        "is_true",
     ],
 )
 def test_filter_model_query(entry_data, entry_model, entries, db_engine, filter_options, expected):
