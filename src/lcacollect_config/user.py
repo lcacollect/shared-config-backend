@@ -3,7 +3,8 @@ import re
 from datetime import datetime
 
 from aiocache import Cache
-from msgraph.core import GraphClient
+from azure.identity import ClientSecretCredential
+from msgraph.graph_service_client import GraphServiceClient
 from requests import Response
 
 from lcacollect_config import exceptions
@@ -18,13 +19,19 @@ except (ImportError, ModuleNotFoundError):
 cache = Cache()
 
 
+def assemble_credentials() -> ClientSecretCredential:
+    credential_values = {"AAD_TENANT_ID": settings.AAD_TENANT_ID, "AAD_APP_CLIENT_ID": settings.AAD_APP_CLIENT_ID}
+    credentials = settings.assemble_graph_credential(settings.AAD_GRAPH_SECRET, credential_values)
+    return credentials
+
+
 async def get_aad_user_by_email(email: str) -> dict[str, str]:
     """Check if user exists in Azure Active Directory"""
     user_data = await cache.get(email, namespace="azure_emails")
     if user_data:
         return user_data
 
-    graph = GraphClient(credential=settings.AAD_GRAPH_SECRET)
+    graph = GraphServiceClient(credentials=assemble_credentials())
     headers = {"Content-Type": "application/json"}
 
     # construct user principal name
@@ -61,7 +68,7 @@ def invite_user_to_aad(email: str, name: str, platform_url: str) -> Response:
         http response received from Graph API
     """
 
-    graph = GraphClient(credential=settings.AAD_GRAPH_SECRET)
+    graph = GraphServiceClient(credentials=assemble_credentials())
 
     headers = {"Content-Type": "application/json"}
 
@@ -104,7 +111,7 @@ async def get_users_from_azure(user_ids: str | list[str]) -> list[dict[str, str]
 
         requests.append(request)
     if requests:
-        graph = GraphClient(credential=settings.AAD_GRAPH_SECRET)
+        graph = GraphServiceClient(credentials=assemble_credentials())
         # use /beta/$batch url if fetching signInActivity
         responses = graph.post(
             url="https://graph.microsoft.com/beta/$batch",

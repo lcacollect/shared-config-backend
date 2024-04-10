@@ -14,7 +14,7 @@ Install the following in your virtual environment:
 **Setup local Python environment**
 
 ```shell
-poetry install
+poetry install --all-extras
 pre-commit install
 ```
 
