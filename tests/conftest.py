@@ -34,7 +34,7 @@ def settings_env():
 @pytest.fixture
 async def mock_graph_client(mocker):
     graphClient_mock = mocker.patch(
-        "lcacollect_config.user.GraphClient",
+        "lcacollect_config.user.GraphServiceClient",
     )
     graph_obj = graphClient_mock.return_value
 
