@@ -9,12 +9,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pydantic = "*"
+pydantic = "^1.10.13"
 strawberry-graphql = {extras = ["fastapi"], version = ">=0.209.0"}
 fastapi-azure-auth = ">=4.0.0"
 aiocache = "*"
-SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"], optional = true}
-sqlmodel = {version = ">=0.0.8", optional = true }
+SQLAlchemy = {version = ">=1.4.35", extras = ["asyncio"]}
+sqlmodel = ">=0.0.8" 
 asyncpg = {version = "^0.26.0", optional = true }
 sendgrid = "*"
 requests = "*"
