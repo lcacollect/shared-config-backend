@@ -2,7 +2,7 @@
 name = "lcacollect-config"
 version = "1.9.0"
 description = "This package contains shared config and utils to be used across LCAcollect backends."
-authors = ["Christian Kongsgaard <chrk@arkitema.com>"]
+authors = ["Christian Kongsgaard <chrk@arkitema.com>", "Jacob Aagaard <jaa@it-minds.dk>"]
 repository = "https://github.com/lcacollect/shared-config-backend"
 license = "Apache-2.0"
 readme = "README.md"
@@ -67,20 +67,20 @@ env = [
     "POSTGRES_PASSWORD=mypassword",
     "POSTGRES_DB=lcacollect",
     "POSTGRES_PORT=5632",
-    "AAD_OPENAPI_CLIENT_ID=PALCEHOLDER",
-    "AAD_APP_CLIENT_ID=PALCEHOLDER",
-    "AAD_TENANT_ID=PALCEHOLDER",
-    "AAD_TEST_CLIENT_SECRET=PALCEHOLDER",
-    "STORAGE_ACCOUNT_URL=PALCEHOLDER",
+    "AAD_OPENAPI_CLIENT_ID=PLACEHOLDER",
+    "AAD_APP_CLIENT_ID=PLACEHOLDER",
+    "AAD_TENANT_ID=PLACEHOLDER",
+    "AAD_TEST_CLIENT_SECRET=PLACEHOLDER",
+    "STORAGE_ACCOUNT_URL=PLACEHOLDER",
     "ROUTER_URL=http://router.url",
-    "STORAGE_CONTAINER_NAME=PALCEHOLDER",
+    "STORAGE_CONTAINER_NAME=PLACEHOLDER",
     "STORAGE_ACCESS_KEY=PLACEHOLDER",
     "STORAGE_BASE_PATH=test",
-    "SPECKLE_TOKEN=PALCEHOLDER",
+    "SPECKLE_TOKEN=PLACEHOLDER",
     "AAD_GRAPH_SECRET=PLACEHOLDER",
     "DEFAULT_AD_FQDN=PLACEHOLDER",
     "SENDGRID_SECRET=c2VjcmV0",
-    "EMAIL_NOTIFICATION_FROM=no-reply@arkitema.com",  # no-reply@molio.com
+    "EMAIL_NOTIFICATION_FROM=no-reply@molio.com",
     "INTERNAL_EMAIL_DOMAINS_LIST=arkitema,cowi,cowicloud",
 ]
 
