@@ -38,6 +38,11 @@ jobs:
       - name: Run PyTest
         run:  poetry run pytest
 
+      - name: Dry-run Publish Package
+        run: poetry publish --build --dry-run
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+
   publish:
     name: Publish Python
     runs-on: ubuntu-latest
